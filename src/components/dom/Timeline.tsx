@@ -6,21 +6,21 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const experiences = [
   {
     id: 1,
-    role: "Lead AI Automation Engineer",
-    company: "Oufa Car Rental",
+    role: "Entrepreneur & Founder",
+    company: "Business Ventures",
     date: "Jan 2024 — Present",
-    desc: "Architected a serverless, AI-powered business operating system unifying the entire rental lifecycle—from acquisition to operations.",
+    desc: "Launched and scaled successful business ventures alongside medical studies, bridging the gap between healthcare precision and entrepreneurial growth.",
     metrics: [
-      { label: "Manual Workload Reduced", value: "60%+" },
-      { label: "Vehicle Downtime Eliminated", value: "0%" },
+      { label: "Projects Launched", value: "3+" },
+      { label: "Revenue Growth", value: "Consistent" },
     ]
   },
   {
     id: 2,
-    role: "AI & Business Systems Architect",
-    company: "Freelance",
+    role: "Dental Student (DDS)",
+    company: "Medical University",
     date: "2023 — Present",
-    desc: "Deploying high-leverage AI systems for modern businesses to remove bottlenecks and scale operations.",
+    desc: "Pursuing a rigorous Doctor of Dental Surgery degree, mastering clinical skills, patient care, and advanced medical sciences.",
     metrics: []
   }
 ];

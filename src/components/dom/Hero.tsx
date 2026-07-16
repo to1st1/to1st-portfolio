@@ -30,7 +30,7 @@ export default function Hero() {
             className="inline-block"
           >
             <span className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium tracking-widest uppercase text-accent mb-6 inline-block">
-              System Architect
+              Dental Student & Entrepreneur
             </span>
           </motion.div>
 
@@ -41,9 +41,9 @@ export default function Hero() {
             variants={titleVariants}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tight text-balance"
           >
-            Systems that <span className="text-accent italic font-light">scale.</span>
+            Precision in <span className="text-accent italic font-light">Dentistry.</span>
             <br />
-            Operations that <span className="text-accent italic font-light">run.</span>
+            Vision in <span className="text-accent italic font-light">Business.</span>
           </motion.h1>
 
           <motion.p
@@ -53,7 +53,7 @@ export default function Hero() {
             variants={titleVariants}
             className="text-lg md:text-xl text-zinc-400 max-w-xl font-light leading-relaxed mt-4"
           >
-            I am Abdulrahman Shehata. I design and deploy elite AI-powered business systems that automate operations, optimize revenue, and remove manual workload entirely.
+            I am Abdelrahman Shehata. I combine clinical precision as a dental student with strategic vision as an entrepreneur, building ventures that make a real impact.
           </motion.p>
           
           <motion.div
@@ -64,7 +64,7 @@ export default function Hero() {
              className="pt-8"
           >
             <a href="#impact" className="relative group overflow-hidden rounded-full inline-flex items-center justify-center px-8 py-4 bg-white text-black font-medium transition-transform active:scale-95">
-              <span className="relative z-10 group-hover:-translate-y-12 transition-transform duration-500 ease-[0.16,1,0.3,1]">Explore Architectures</span>
+              <span className="relative z-10 group-hover:-translate-y-12 transition-transform duration-500 ease-[0.16,1,0.3,1]">Explore My Journey</span>
               <span className="absolute inset-0 flex items-center justify-center z-10 translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]">
                 Scroll Down ↓
               </span>

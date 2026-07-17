@@ -69,3 +69,9 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+@media (pointer: fine) {
+  body, a, button {
+    cursor: none !important;
+  }
+}

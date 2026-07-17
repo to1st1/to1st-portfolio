@@ -8,8 +8,8 @@ import { cn } from "@/utils/cn";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Abdulrahman Shehata | AI Systems Architect",
-  description: "Lead AI Automation Engineer & Business Systems Architect.",
+  title: "Abdelrahman Shehata | Dental Student & Entrepreneur",
+  description: "DDS Candidate, Innovator, and Business Systems Architect.",
 };
 
 export const viewport = {

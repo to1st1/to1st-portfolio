@@ -11,6 +11,7 @@ export default function CustomCursor() {
   useEffect(() => {
     // Show cursor only on desktop
     if (window.innerWidth < 768) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsVisible(true);
 
     const updateMousePosition = (e: MouseEvent) => {

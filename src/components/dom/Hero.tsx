@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+import { ArrowRight, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const titleVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -29,7 +30,7 @@ export default function Hero() {
             className="inline-block"
           >
             <span className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium tracking-widest uppercase text-accent mb-6 inline-block">
-              Dental Student & Entrepreneur
+              AI Automation Engineer & DDS Candidate
             </span>
           </motion.div>
 
@@ -38,11 +39,11 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={titleVariants}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-tight text-balance"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.05] tracking-tighter text-balance uppercase"
           >
-            Precision in <span className="text-accent italic font-light">Dentistry.</span>
+            Systems <span className="text-accent">that scale.</span>
             <br />
-            Vision in <span className="text-accent italic font-light">Business.</span>
+            Operations <span className="text-accent">that run.</span>
           </motion.h1>
 
           <motion.p
@@ -52,7 +53,7 @@ export default function Hero() {
             variants={titleVariants}
             className="text-lg md:text-xl text-zinc-400 max-w-xl font-light leading-relaxed mt-4"
           >
-            I am Abdelrahman Shehata. I combine clinical precision as a dental student with strategic vision as an entrepreneur, building ventures that make a real impact.
+            I don&apos;t build AI tools. I build intelligent business systems that generate revenue, eliminate manual work, and scale companies automatically.
           </motion.p>
           
           <motion.div
@@ -60,14 +61,22 @@ export default function Hero() {
              initial="hidden"
              animate="visible"
              variants={titleVariants}
-             className="pt-8"
+             className="pt-8 flex flex-wrap items-center gap-6"
           >
-            <a href="#impact" className="relative group overflow-hidden rounded-full inline-flex items-center justify-center px-8 py-4 bg-white text-black font-medium transition-transform active:scale-95">
-              <span className="relative z-10 group-hover:-translate-y-12 transition-transform duration-500 ease-[0.16,1,0.3,1]">Explore My Journey</span>
-              <span className="absolute inset-0 flex items-center justify-center z-10 translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]">
-                Scroll Down ↓
+            <a href="https://wa.me/966547242540" target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden rounded-full inline-flex items-center justify-center px-8 py-4 bg-white text-black font-medium transition-transform active:scale-95">
+              <span className="relative z-10 flex items-center gap-2 group-hover:-translate-y-12 transition-transform duration-500 ease-[0.16,1,0.3,1]">
+                Book Free AI Consultation <ArrowRight size={18} />
+              </span>
+              <span className="absolute inset-0 flex items-center justify-center gap-2 z-10 translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]">
+                Let&apos;s Build <ArrowRight size={18} />
               </span>
             </a>
+            
+            <div className="flex items-center gap-4 text-zinc-500">
+              <a href="#" className="hover:text-white transition-colors p-2"><FaGithub size={24} /></a>
+              <a href="#" className="hover:text-white transition-colors p-2"><FaLinkedin size={24} /></a>
+              <a href="mailto:to1st@icloud.com" className="hover:text-white transition-colors p-2"><Mail size={24} /></a>
+            </div>
           </motion.div>
         </div>
 
@@ -96,42 +105,42 @@ export default function Hero() {
               <motion.div 
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="w-4/5 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 mr-8"
+                className="w-4/5 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 mr-8 bg-black/40"
               >
-                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl">
-                  🦷
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl border border-accent/30">
+                  ⚙️
                 </div>
                 <div>
-                  <div className="text-white font-medium text-lg">DDS Candidate</div>
-                  <div className="text-zinc-400 text-sm">Medical University</div>
+                  <div className="text-white font-medium text-lg">AI Systems Architect</div>
+                  <div className="text-accent text-sm">Building Agentic AI</div>
                 </div>
               </motion.div>
 
               <motion.div 
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="w-4/5 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 ml-8"
+                className="w-4/5 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 ml-8 bg-black/40"
               >
-                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl">
-                  💼
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl border border-accent/30">
+                  📈
                 </div>
                 <div>
-                  <div className="text-white font-medium text-lg">3+ Ventures</div>
-                  <div className="text-zinc-400 text-sm">Founded & Scaled</div>
+                  <div className="text-white font-medium text-lg">60% Manual Work</div>
+                  <div className="text-accent text-sm">Eliminated</div>
                 </div>
               </motion.div>
 
               <motion.div 
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="w-3/4 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 mr-12"
+                className="w-3/4 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 mr-12 bg-black/40"
               >
-                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl">
-                  ⚙️
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl border border-accent/30">
+                  ⏳
                 </div>
                 <div>
-                  <div className="text-white font-medium text-lg">Systems Innovator</div>
-                  <div className="text-zinc-400 text-sm">Automating Operations</div>
+                  <div className="text-white font-medium text-lg">30% Downtime</div>
+                  <div className="text-accent text-sm">Reduced</div>
                 </div>
               </motion.div>
 

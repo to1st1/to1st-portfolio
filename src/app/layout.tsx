@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CustomCursor from "@/components/layout/CustomCursor";
+import Navbar from "@/components/layout/Navbar";
 import Scene from "@/components/canvas/Scene";
 import { cn } from "@/utils/cn";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={cn(inter.variable, "antialiased selection:bg-accent selection:text-black")}>
         <CustomCursor />
+        <Navbar />
         <SmoothScroll>
           <Scene />
           {children}

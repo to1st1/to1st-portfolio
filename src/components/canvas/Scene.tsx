@@ -1,7 +1,7 @@
 "use client";
 
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useMemo, useRef, useEffect, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 
 // Custom Shader for the glowing particles
@@ -33,47 +33,60 @@ const fragmentShader = `
   }
 `;
 
+function generateParticles(count: number) {
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const sizes = new Float32Array(count);
+
+  const color1 = new THREE.Color("#FF7300"); // Premium Orange
+  const color2 = new THREE.Color("#FFB070"); // Light Gold
+
+  for (let i = 0; i < count; i++) {
+    const r = 20 + Math.random() * 80;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+
+    positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
+
+    const mixedColor = color1.clone().lerp(color2, Math.random());
+    colors[i * 3] = mixedColor.r;
+    colors[i * 3 + 1] = mixedColor.g;
+    colors[i * 3 + 2] = mixedColor.b;
+
+    sizes[i] = Math.random() * 1.5 + 0.5;
+  }
+
+  return { positions, colors, sizes };
+}
+
 function Particles() {
   const pointsRef = useRef<THREE.Points>(null);
-  const { viewport } = useThree();
   const [isMobile, setIsMobile] = useState(false);
+  const [particlesData, setParticlesData] = useState({
+    positions: new Float32Array(0),
+    colors: new Float32Array(0),
+    sizes: new Float32Array(0),
+  });
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const timeout = setTimeout(() => {
+      handleResize();
+    }, 0);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  const particleCount = isMobile ? 800 : 3500;
-
-  const [positions, colors, sizes] = useMemo(() => {
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const sizes = new Float32Array(particleCount);
-
-    const color1 = new THREE.Color("#FF7300"); // Premium Orange
-    const color2 = new THREE.Color("#FFB070"); // Light Gold
-
-    for (let i = 0; i < particleCount; i++) {
-      const r = 20 + Math.random() * 80;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-
-      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = r * Math.cos(phi);
-
-      const mixedColor = color1.clone().lerp(color2, Math.random());
-      colors[i * 3] = mixedColor.r;
-      colors[i * 3 + 1] = mixedColor.g;
-      colors[i * 3 + 2] = mixedColor.b;
-
-      sizes[i] = Math.random() * 1.5 + 0.5;
-    }
-
-    return [positions, colors, sizes];
-  }, [particleCount]);
+  useEffect(() => {
+    const particleCount = isMobile ? 800 : 3500;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setParticlesData(generateParticles(particleCount));
+  }, [isMobile]);
 
   useFrame((state) => {
     if (pointsRef.current) {
@@ -82,23 +95,25 @@ function Particles() {
     }
   });
 
+  if (particlesData.positions.length === 0) return null;
+
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={particleCount}
-          args={[positions, 3]}
+          count={particlesData.positions.length / 3}
+          args={[particlesData.positions, 3]}
         />
         <bufferAttribute
           attach="attributes-color"
-          count={particleCount}
-          args={[colors, 3]}
+          count={particlesData.colors.length / 3}
+          args={[particlesData.colors, 3]}
         />
         <bufferAttribute
           attach="attributes-size"
-          count={particleCount}
-          args={[sizes, 1]}
+          count={particlesData.sizes.length}
+          args={[particlesData.sizes, 1]}
         />
       </bufferGeometry>
       <shaderMaterial
@@ -114,12 +129,10 @@ function Particles() {
 }
 
 function MouseParallax() {
-  const { camera, pointer } = useThree();
-  
-  useFrame(() => {
-    camera.position.x += (pointer.x * 5 - camera.position.x) * 0.05;
-    camera.position.y += (pointer.y * 5 - camera.position.y) * 0.05;
-    camera.lookAt(0, 0, 0);
+  useFrame((state) => {
+    state.camera.position.x += (state.pointer.x * 5 - state.camera.position.x) * 0.05;
+    state.camera.position.y += (state.pointer.y * 5 - state.camera.position.y) * 0.05;
+    state.camera.lookAt(0, 0, 0);
   });
 
   return null;
@@ -130,7 +143,7 @@ export default function Scene() {
     <div className="fixed inset-0 w-full h-full -z-10 pointer-events-none mix-blend-screen bg-background">
       <Canvas
         camera={{ position: [0, 0, 40], fov: 75 }}
-        dpr={[1, 2]} // Limit DPR to 2 for performance
+        dpr={[1, 2]}
         gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
       >
         <fog attach="fog" args={["#09090b", 20, 100]} />

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Variants } from "framer-motion";
 
@@ -72,39 +71,71 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Profile / Abstract Visualization area */}
+        {/* Abstract Floating Cards Area */}
         <motion.div 
           custom={4}
           initial="hidden"
           animate="visible"
           variants={titleVariants}
-          className="relative w-full aspect-square max-w-md mx-auto lg:ml-auto"
+          className="relative w-full aspect-square max-w-md mx-auto lg:ml-auto flex items-center justify-center"
         >
            {/* Animated glowing background */}
            <motion.div 
               animate={{ 
                 scale: [1, 1.15, 1], 
-                opacity: [0.2, 0.5, 0.2],
+                opacity: [0.1, 0.3, 0.1],
                 rotate: [0, 45, 0]
               }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 rounded-full bg-accent blur-[80px]" 
+              className="absolute inset-0 rounded-full bg-accent blur-[100px]" 
            />
            
-           {/* Floating Image Container */}
-           <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full h-full rounded-full border border-accent/30 flex items-center justify-center overflow-hidden glass-panel shadow-[0_0_50px_rgba(255,115,0,0.15)]"
-           >
-              <Image 
-                src="/profile.jpg"
-                alt="Abdulrahman Shehata - Profile"
-                fill
-                priority
-                className="object-cover scale-105"
-              />
-           </motion.div>
+           {/* Floating Cards */}
+           <div className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-6">
+              
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="w-4/5 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 mr-8"
+              >
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl">
+                  🦷
+                </div>
+                <div>
+                  <div className="text-white font-medium text-lg">DDS Candidate</div>
+                  <div className="text-zinc-400 text-sm">Medical University</div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="w-4/5 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 ml-8"
+              >
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl">
+                  💼
+                </div>
+                <div>
+                  <div className="text-white font-medium text-lg">3+ Ventures</div>
+                  <div className="text-zinc-400 text-sm">Founded & Scaled</div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="w-3/4 glass-panel p-6 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-4 mr-12"
+              >
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl">
+                  ⚙️
+                </div>
+                <div>
+                  <div className="text-white font-medium text-lg">Systems Innovator</div>
+                  <div className="text-zinc-400 text-sm">Automating Operations</div>
+                </div>
+              </motion.div>
+
+           </div>
         </motion.div>
       </div>
     </section>
